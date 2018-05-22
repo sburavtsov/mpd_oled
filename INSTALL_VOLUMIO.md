@@ -86,10 +86,13 @@ Clone the source repository
 ```
 git clone https://github.com/antiprism/mpd_oled
 ```
-Change to the source directory and build the program
+Change to the source directory and build the program (if cross compiling
+the player cannot be detected and must be set with configure
+'PLAYER=VOLUMIO ./configure')
 ```
-cd mpd_oled
-PLAYER=VOLUMIO make
+./bootstrap
+./configure
+make
 ```
 Check the program works correctly by running it while playing music.
 The OLED type MUST be specified with -o from the following list:

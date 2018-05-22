@@ -91,9 +91,12 @@ then modify /usr/local/etc/mpd_oled_fifo.conf and restart MPD,
 by going to the Moode UI Audio Config page and clicking on
 "RESTART" in the MPD section.
 
-Now build mpd_oled
+Now build mpd_oled (if cross compiling the player cannot be detected and
+must be set with configure 'PLAYER=MOODE ./configure')
 ```
-PLAYER=MOODE make
+./bootstrap
+./configure
+make
 ```
 Check the program works correctly by running it while playing music.
 The OLED type MUST be specified with -o from the following list:

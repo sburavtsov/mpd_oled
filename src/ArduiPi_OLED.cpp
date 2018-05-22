@@ -143,6 +143,17 @@ const unsigned char seedfont[][8] =
 };
 
 
+const char * oled_type_str[] = {
+    "Adafruit SPI 128x32",
+    "Adafruit SPI 128x64",
+    "Adafruit I2C 128x32",
+    "Adafruit I2C 128x64",
+    "Seeed I2C 128x64",
+    "Seeed I2C 96x96",
+    "SH1106 I2C 128x64"
+};
+
+
 inline boolean ArduiPi_OLED::isSPI(void) {
   return (cs != -1 ? true : false);
 }
@@ -362,7 +373,8 @@ boolean ArduiPi_OLED::init(int8_t DC, int8_t RST, int8_t CS, uint8_t OLED_TYPE)
     return false;
 
   // Init & Configure Raspberry PI SPI
-  bcm2835_spi_begin(cs);
+  bcm2835_spi_begin();
+  bcm2835_spi_chipSelect(cs);
   bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);      
   bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);                
   
@@ -625,7 +637,7 @@ void ArduiPi_OLED::setSeedTextXY(unsigned char Row, unsigned char Column)
 
 void ArduiPi_OLED::putSeedChar(char C)
 {
-    if(C < 32 || C > 127) //Ignore non-printable ASCII characters. This can be modified for multilingual font.
+    if(C < 32 || (unsigned char)C > 127) //Ignore non-printable ASCII characters. This can be modified for multilingual font.
     {
         C=' '; //Space
     } 

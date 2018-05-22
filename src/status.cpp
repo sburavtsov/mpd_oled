@@ -63,7 +63,7 @@ string get_ip_address(const char *if_str)
 
   struct ifreq ifr;
   ifr.ifr_addr.sa_family = AF_INET;
-  snprintf(ifr.ifr_name, IFNAMSIZ, if_str);
+  snprintf(ifr.ifr_name, IFNAMSIZ, "%s", if_str);
   ioctl(fd, SIOCGIFADDR, &ifr);
 
   string ip_str = inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
@@ -247,7 +247,7 @@ void mpd_info::set_vals_volumio(struct mpd_connection *conn)
 
 #else
 // Dummy function (shouldn't be called)
-void mpd_info::set_vals_volumio(struct mpd_connection *conn)
+void mpd_info::set_vals_volumio(struct mpd_connection *)
 {
   fprintf(stderr, "Internal error: trying to find Volumio status values but "
       "the program was not built with PLAYER=VOLUMIO\n");

@@ -1106,7 +1106,7 @@ int16_t Adafruit_GFX::height(void) const {
     return _height;
 }
 
-void Adafruit_GFX::invertDisplay(boolean i) {
+void Adafruit_GFX::invertDisplay(boolean) {
     // Do nothing, must be subclassed if supported by hardware
 }
 

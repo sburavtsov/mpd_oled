@@ -90,9 +90,12 @@ then modify /usr/local/etc/mpd_oled_fifo.conf and restart MPD,
 by going to the RuneUI MPD Configuration page and clicking on
 "SAVE AND APPLY" in the volume control section.
 
-Now build mpd_oled
+Now build mpd_oled (if cross compiling the player cannot be detected and
+must be set with configure 'PLAYER=RUNEAUDIO ./configure')
 ```
-CC=clang CXX=clang++ PLAYER=RUNEAUDIO make
+./bootstrap
+CC=clang CXX=clang++ ./configure
+make
 ```
 Check the mpd_oled program works correctly by running it while playing music.
 The OLED type MUST be specified with -o from the following list:

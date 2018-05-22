@@ -58,7 +58,6 @@ int draw_spectrum(ArduiPi_OLED &display, int x_start, int y_start, int width,
     // map vals range to graph ht
     int val = bar_height_max * spect.heights[i] / 255.0 + 0.5;
     int x = x_start + i*(bar_width+gap);
-    int y = y_start+2;
     if(val)
        display.fillRect(x, y_start + height - val - 2, bar_width, val, WHITE);
   }
